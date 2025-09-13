@@ -221,6 +221,7 @@ async function uploadAudio() {
             phone_model: document.getElementById('phone_model').value,
             pd_status: document.getElementById('pd_status').value,
             recording_environment: document.getElementById('recording_environment').value,
+            preferred_language: document.getElementById('preferred_language').value,
             additional_notes: document.getElementById('additional_notes').value,
             timestamp: new Date().toISOString(),
             browser: navigator.userAgent,
@@ -255,7 +256,7 @@ async function uploadAudio() {
 }
 
 function validateMetadata() {
-    const requiredFields = ['participant_id', 'phone_model', 'pd_status', 'recording_environment'];
+    const requiredFields = ['participant_id', 'phone_model', 'pd_status', 'recording_environment', 'preferred_language'];
     const missingFields = [];
 
     for (const field of requiredFields) {

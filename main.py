@@ -375,6 +375,7 @@ def save_to_csv(participant_id, metadata, acoustic_biomarkers):
             'phone_model': metadata.get('phone_model', ''),
             'pd_status': metadata.get('pd_status', ''),
             'recording_environment': metadata.get('recording_environment', ''),
+            'preferred_language': metadata.get('preferred_language', ''),
             'additional_notes': metadata.get('additional_notes', ''),
             'browser': metadata.get('browser', ''),
             'recording_duration': metadata.get('recording_duration', 0)
@@ -539,7 +540,7 @@ def data_summary():
                 'latest_recording': df['timestamp'].max() if not df.empty else None,
                 'features_extracted': len([col for col in df.columns if col not in 
                     ['participant_id', 'timestamp', 'phone_model', 'pd_status', 
-                     'recording_environment', 'additional_notes', 'browser', 'recording_duration']])
+                     'recording_environment', 'preferred_language', 'additional_notes', 'browser', 'recording_duration']])
             }
             return jsonify(summary)
         else:
