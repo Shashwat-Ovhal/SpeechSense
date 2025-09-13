@@ -1,0 +1,108 @@
+Create a functional prototype of a mobile application and backend for collecting and analyzing speech data to detect Parkinson's Disease (PD). The prototype should simulate the core data flow from a user recording a voice sample to the extraction and storage of acoustic biomarkers.
+
+Prototype Scope:
+
+A simple, web-based frontend (simulating the mobile app UI) built with HTML, CSS, and JavaScript.
+
+A Python backend server built with Flask to handle audio uploads and analysis.
+
+The backend will use the Parselmouth library (a Python wrapper for Praat) to extract key acoustic biomarkers.
+
+A basic in-memory data structure (a Python dictionary) will serve as the database to store the collected data.
+
+Specific Tasks to Implement:
+
+1. Backend Server (main.py):
+
+Framework: Use Flask.
+
+Dependencies: Flask, python-multipart, parselmouth. Ensure these are listed in replit.nix or a similar configuration file for installation.
+
+Endpoints:
+
+POST /upload-audio: This endpoint will accept a multipart/form-data request containing an audio file (.wav format) and a JSON payload with metadata.
+
+Audio Processing Logic:
+
+Upon receiving a request, the server will save the audio file temporarily.
+
+It will use parselmouth.Sound() to load the audio file.
+
+It will extract the following acoustic biomarkers using parselmouth methods:
+
+Fundamental Frequency (F 
+0
+​
+ )
+
+Jitter (as Jitter(local))
+
+Shimmer (as Shimmer(local))
+
+Harmonics-to-Noise Ratio (HNR)
+
+It will print these extracted features to the console.
+
+Data Storage:
+
+Create a global Python dictionary named dataset.
+
+Each key in the dictionary will be a unique participant_id (sent in the metadata).
+
+The value will be a list of dictionaries, where each dictionary represents a single recording and contains:
+
+timestamp
+
+metadata (phone model, recording environment)
+
+acoustic_biomarkers (the extracted features)
+
+Response: The endpoint should return a JSON response with a success message and the extracted biomarkers.
+
+2. Frontend (index.html, style.css, script.js):
+
+HTML:
+
+Create a simple form with a header, a section for metadata input, and a section for audio recording.
+
+Metadata Fields: Use text input fields for participant_id, phone_model, and a dropdown or radio button for PD_status (PD/Control).
+
+Audio Controls: Include a "Start Recording" button, a "Stop Recording" button, and an "Upload" button. Use the <audio controls> tag to display the recorded audio.
+
+JavaScript (script.js):
+
+Web Audio API: Use the navigator.mediaDevices.getUserMedia API to access the user's microphone.
+
+MediaRecorder API: Use the MediaRecorder API to record audio from the microphone.
+
+Event Handlers:
+
+When "Start Recording" is clicked, begin recording and change the button state.
+
+When "Stop Recording" is clicked, stop recording, create a .wav file from the recorded audio, and enable the "Upload" button.
+
+When "Upload" is clicked, a function should:
+
+Create a FormData object.
+
+Append the recorded audio file to the FormData object.
+
+Append a JSON blob with the metadata (from the form fields) to the FormData object.
+
+Use the fetch() API to send a POST request to the /upload-audio endpoint.
+
+Log the server's JSON response to the browser's console.
+
+CSS (style.css):
+
+Apply basic styling to make the interface clean and usable. Use a clean font, center the content, and use distinct colors for the buttons to indicate their state (e.g., green for record, red for stop).
+
+3. Instructions for Replit Environment:
+
+The project should be a Python with Web Server type.
+
+The replit.nix file (or equivalent) should be configured to include all necessary packages, especially python3Packages.python-multipart and python3Packages.parselmouth.
+
+Explain how to run the prototype (flask run or similar command in the pyproject.toml file).
+
+The user must grant microphone access to the browser when prompted.
