@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson's Disease Speech Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Parkinson's Disease Speech Analysis Prototype</h1>
+            <p class="subtitle">Comprehensive Acoustic Biomarker Collection System</p>
+        </header>
+
+        <main>
+            <section class="metadata-section">
+                <h2>Participant Information</h2>
+                <form id="metadata-form">
+                    <div class="form-group">
+                        <label for="participant_id">Participant ID:</label>
+                        <input type="text" id="participant_id" name="participant_id" 
+                               placeholder="Enter unique participant ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone_model">Phone/Recording Device Model:</label>
+                        <input type="text" id="phone_model" name="phone_model" 
+                               placeholder="e.g., iPhone 12, Samsung Galaxy S21" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pd_status">PD Status:</label>
+                        <select id="pd_status" name="pd_status" required>
+                            <option value="">Select status</option>
+                            <option value="PD">Parkinson's Disease (PD)</option>
+                            <option value="Control">Healthy Control</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recording_environment">Recording Environment:</label>
+                        <select id="recording_environment" name="recording_environment" required>
+                            <option value="">Select environment</option>
+                            <option value="quiet_room">Quiet Room</option>
+                            <option value="home_environment">Home Environment</option>
+                            <option value="clinical_setting">Clinical Setting</option>
+                            <option value="outdoor">Outdoor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additional_notes">Additional Notes (optional):</label>
+                        <textarea id="additional_notes" name="additional_notes" 
+                                  placeholder="Any additional observations or notes"></textarea>
+                    </div>
+                </form>
+            </section>
+
+            <section class="audio-section">
+                <h2>Voice Recording</h2>
+                <div class="recording-instructions">
+                    <p><strong>Instructions:</strong></p>
+                    <ul>
+                        <li>Click "Start Recording" and speak clearly into your microphone</li>
+                        <li>For best results, record for 10-30 seconds</li>
+                        <li>You may read a passage, count numbers, or sustain the "ahh" sound</li>
+                        <li>Click "Stop Recording" when finished</li>
+                        <li>Review your recording, then click "Upload & Analyze" to process</li>
+                    </ul>
+                </div>
+
+                <div class="recording-controls">
+                    <button id="start-record-btn" type="button" class="btn btn-start">
+                        🎤 Start Recording
+                    </button>
+                    <button id="stop-record-btn" type="button" class="btn btn-stop" disabled>
+                        ⏹️ Stop Recording
+                    </button>
+                    <button id="upload-btn" type="button" class="btn btn-upload" disabled>
+                        📤 Upload & Analyze
+                    </button>
+                </div>
+
+                <div class="recording-status">
+                    <p id="status-message">Ready to record</p>
+                    <div id="recording-timer" class="timer">00:00</div>
+                </div>
+
+                <div id="audio-preview" class="audio-preview" style="display: none;">
+                    <h3>Recording Preview</h3>
+                    <audio id="recorded-audio" controls></audio>
+                </div>
+            </section>
+
+            <section class="results-section" id="results-section" style="display: none;">
+                <h2>Analysis Results</h2>
+                <div id="analysis-results">
+                    <p>Processing audio and extracting acoustic biomarkers...</p>
+                </div>
+            </section>
+
+            <section class="features-info">
+                <h2>Extracted Acoustic Biomarkers</h2>
+                <p>This system extracts 20+ comprehensive acoustic biomarkers including:</p>
+                <div class="features-grid">
+                    <div class="feature-category">
+                        <h3>Fundamental Features</h3>
+                        <ul>
+                            <li>Fundamental Frequency (F0/Pitch)</li>
+                            <li>Jitter (frequency variation)</li>
+                            <li>Shimmer (amplitude variation)</li>
+                            <li>Harmonics-to-Noise Ratio (HNR)</li>
+                        </ul>
+                    </div>
+                    <div class="feature-category">
+                        <h3>Spectral Features</h3>
+                        <ul>
+                            <li>Formant frequencies (F1, F2, F3)</li>
+                            <li>MFCC coefficients</li>
+                            <li>Spectral centroid, flux, roll-off</li>
+                            <li>Short-time energy</li>
+                        </ul>
+                    </div>
+                    <div class="feature-category">
+                        <h3>Advanced Measures</h3>
+                        <ul>
+                            <li>Detrended Fluctuation Analysis (DFA)</li>
+                            <li>Pitch Period Entropy (PPE)</li>
+                            <li>Recurrence Period Density Entropy (RPDE)</li>
+                            <li>Articulation rate & pause analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Parkinson's Disease Speech Analysis Prototype - Research Tool</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

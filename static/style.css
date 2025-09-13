@@ -1,0 +1,381 @@
+/* Parkinson's Disease Speech Analysis - Medical Grade Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Recording Instructions */
+.recording-instructions {
+    background: #e8f4fd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid #3498db;
+}
+
+.recording-instructions p {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2980b9;
+}
+
+.recording-instructions ul {
+    margin-left: 20px;
+}
+
+.recording-instructions li {
+    margin-bottom: 8px;
+    color: #34495e;
+}
+
+/* Button Styles */
+.recording-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-start {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+}
+
+.btn-start:hover:not(:disabled) {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.btn-stop {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.btn-stop:hover:not(:disabled) {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.btn-upload {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.btn-upload:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Recording Status */
+.recording-status {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#status-message {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 2em;
+    font-weight: 300;
+    color: #e74c3c;
+    font-family: 'Courier New', monospace;
+}
+
+/* Audio Preview */
+.audio-preview {
+    background: #f0f3f6;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.audio-preview h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+#recorded-audio {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Results Section */
+.results-section {
+    background: #e8f5e8;
+    border-left-color: #2ecc71;
+}
+
+#analysis-results {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.feature-result {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.feature-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.feature-value {
+    font-family: 'Courier New', monospace;
+    color: #27ae60;
+    font-weight: 600;
+}
+
+/* Features Information */
+.features-info {
+    background: #f8f9fa;
+    border-left-color: #9b59b6;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-category {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feature-category h3 {
+    color: #8e44ad;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.feature-category ul {
+    list-style: none;
+}
+
+.feature-category li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+}
+
+.feature-category li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+    border-top: 1px solid #ecf0f1;
+    margin-top: 40px;
+}
+
+/* Recording Animation */
+.recording {
+    animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.6;
+    }
+}
+
+/* Success Message */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 20px;
+}
+
+/* Loading Spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .recording-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
