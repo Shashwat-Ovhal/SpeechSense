@@ -1,0 +1,11 @@
+streamlit
+supabase
+python-dotenv
+librosa
+numpy
+scipy
+soundfile
+praat-parselmouth
+pandas
+scikit-learn
+simple-salesforce
