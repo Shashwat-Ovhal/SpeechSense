@@ -30,16 +30,20 @@ def main():
             
             # Determine role from metadata if not set
             if not st.session_state.role:
-                try:
-                    # Check user metadata first (from signup)
-                    meta_role = st.session_state.user.user_metadata.get('role')
-                    if meta_role:
-                        st.session_state.role = meta_role
-                    else:
-                        from supabase_client import get_user_role
-                        st.session_state.role = get_user_role(st.session_state.user.id)
-                except:
-                    st.session_state.role = 'patient'
+                # 1. Hardcoded Admin Check
+                if st.session_state.user.email == "o.shashwat10@gmail.com":
+                    st.session_state.role = "admin"
+                else:
+                    try:
+                        # 2. Check user metadata (from signup)
+                        meta_role = st.session_state.user.user_metadata.get('role')
+                        if meta_role:
+                            st.session_state.role = meta_role
+                        else:
+                            from supabase_client import get_user_role
+                            st.session_state.role = get_user_role(st.session_state.user.id)
+                    except:
+                        st.session_state.role = 'patient'
             
             st.info(f"Role: {st.session_state.role.upper()}")
             

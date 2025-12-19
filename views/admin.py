@@ -31,8 +31,11 @@ def render_admin_view():
              try: meta = json.loads(meta)
              except: meta = {}
         
-        for k, v in meta.items():
-            item[f"meta_{k}"] = v
+        item.update({
+            'meta_pd_status': meta.get('pd_status'),
+            'meta_recorded_by': meta.get('recorded_by_role', 'unknown'),
+            'meta_recorder_id': meta.get('recorder_id', 'unknown')
+        })
             
         # Flatten features (just counts or key stats)
         feats = row.get('features', {})
@@ -54,8 +57,8 @@ def render_admin_view():
     col2.metric("Unique Users", df['user_id'].nunique())
     
     # Calculate breakdown
-    pd_count = len(df[df['meta_pd_status'] == "Parkinson's Disease"]) if 'meta_pd_status' in df.columns else 0
-    control_count = len(df[df['meta_pd_status'] == "Healthy Control"]) if 'meta_pd_status' in df.columns else 0
+    pd_count = len(df[df['meta_pd_status'] == "Yes (Diagnosed PD)"]) if 'meta_pd_status' in df.columns else 0
+    control_count = len(df[df['meta_pd_status'] == "No (Healthy Control)"]) if 'meta_pd_status' in df.columns else 0
     
     col3.metric("PD Patients", pd_count)
     col4.metric("Controls", control_count)

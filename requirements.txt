@@ -8,4 +8,4 @@ soundfile
 praat-parselmouth
 pandas
 scikit-learn
-simple-salesforce
+requests

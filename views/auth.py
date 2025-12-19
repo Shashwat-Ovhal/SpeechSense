@@ -40,9 +40,9 @@ def render_signup():
         password = st.text_input("Password", type="password", help="Min 6 characters")
         confirm_password = st.text_input("Confirm Password", type="password")
         
-        # Simple role selection for Prototype (In real app, this would be admin-controlled)
-        # For now, we allow users to self-identify to test easier
-        role_options = ["patient", "doctor", "admin"]
+        # Simple role selection for Prototype
+        # Admin is removed from self-registration as requested
+        role_options = ["patient", "doctor"]
         role = st.selectbox("I am a:", role_options)
         
         submit = st.form_submit_button("Sign Up")

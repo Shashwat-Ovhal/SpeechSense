@@ -464,11 +464,11 @@ def upload_audio():
             acoustic_biomarkers = analyzer.extract_all_features(temp_audio_path)
             
             # Print extracted features to console for debugging
-            print(f"\n=== EXTRACTED ACOUSTIC BIOMARKERS ===")
+            print(f"\n=== EXTRACTED CLINICAL ACOUSTIC BIOMARKERS ===")
             print(f"Participant ID: {participant_id}")
             print(f"Total features extracted: {len(acoustic_biomarkers)}")
-            for feature, value in acoustic_biomarkers.items():
-                print(f"{feature}: {value}")
+            print(f"Quality Score: {acoustic_biomarkers.get('quality_score', 'N/A')}")
+            print(f"Rejection Reason: {acoustic_biomarkers.get('rejection_reason', 'N/A')}")
             print(f"=====================================\n")
             
             # Store data in global dataset
@@ -540,7 +540,8 @@ def data_summary():
                 'latest_recording': df['timestamp'].max() if not df.empty else None,
                 'features_extracted': len([col for col in df.columns if col not in 
                     ['participant_id', 'timestamp', 'phone_model', 'pd_status', 
-                     'recording_environment', 'preferred_language', 'additional_notes', 'browser', 'recording_duration']])
+                     'recording_environment', 'preferred_language', 'additional_notes', 'browser', 'recording_duration',
+                     'feature_version', 'preprocessing_chain', 'quality_score', 'rejection_reason']])
             }
             return jsonify(summary)
         else:
