@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../config/firebaseConfig';
+import { supabase } from '../config/supabaseConfig';
 import { getUserProfile } from '../services/authService';
 
 const AuthContext = createContext({});
@@ -11,10 +10,21 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                setUser(firebaseUser);
-                const profile = await getUserProfile(firebaseUser.uid);
+        // Check active session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                setUser(session.user);
+                getUserProfile(session.user.id).then(setUserProfile);
+            } else {
+                setLoading(false);
+            }
+        });
+
+        // Listen for changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            if (session) {
+                setUser(session.user);
+                const profile = await getUserProfile(session.user.id);
                 setUserProfile(profile);
             } else {
                 setUser(null);
@@ -23,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         });
 
-        return unsubscribe;
+        return () => subscription.unsubscribe();
     }, []);
 
     return (

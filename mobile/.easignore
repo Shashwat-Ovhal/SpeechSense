@@ -1,0 +1,17 @@
+.expo/
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+data/
+doctor_output.txt
+doctor_audit.txt
+check_output.txt
+npm_error.txt
+.replit
+.local/
+.git/
+assets/adaptive-icon.jpg
+assets/favicon.jpg
+assets/icon.jpg
+assets/splash-icon.jpg

@@ -6,6 +6,7 @@ export default function SignupScreen({ navigation }) {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('patient');
     const [loading, setLoading] = useState(false);
 
     const handleSignup = async () => {
@@ -16,7 +17,7 @@ export default function SignupScreen({ navigation }) {
 
         setLoading(true);
         try {
-            await signup(email, password, fullName);
+            await signup(email, password, fullName, role);
             // Navigation will be handled by App.js based on auth state
         } catch (error) {
             Alert.alert('Signup Failed', error.message);
@@ -53,6 +54,24 @@ export default function SignupScreen({ navigation }) {
                 onChangeText={setPassword}
                 secureTextEntry
             />
+
+            <View style={styles.roleContainer}>
+                <Text style={styles.roleLabel}>I am a:</Text>
+                <View style={styles.roleButtons}>
+                    <TouchableOpacity
+                        style={[styles.roleButton, role === 'patient' && styles.roleButtonActive]}
+                        onPress={() => setRole('patient')}
+                    >
+                        <Text style={[styles.roleButtonText, role === 'patient' && styles.roleButtonTextActive]}>Patient</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.roleButton, role === 'doctor' && styles.roleButtonActive]}
+                        onPress={() => setRole('doctor')}
+                    >
+                        <Text style={[styles.roleButtonText, role === 'doctor' && styles.roleButtonTextActive]}>Doctor</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             <TouchableOpacity style={styles.button} onPress={handleSignup} disabled={loading}>
                 {loading ? (
@@ -114,5 +133,38 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 20,
         fontSize: 16,
+    },
+    roleContainer: {
+        marginBottom: 20,
+    },
+    roleLabel: {
+        fontSize: 16,
+        color: '#7f8c8d',
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    roleButtons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 10,
+    },
+    roleButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        backgroundColor: '#fff',
+    },
+    roleButtonActive: {
+        backgroundColor: '#2ecc71',
+        borderColor: '#2ecc71',
+    },
+    roleButtonText: {
+        color: '#7f8c8d',
+        fontWeight: '600',
+    },
+    roleButtonTextActive: {
+        color: '#fff',
     },
 });

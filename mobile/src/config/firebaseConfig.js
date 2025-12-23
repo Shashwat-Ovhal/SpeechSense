@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { initializeAuth, browserLocalPersistence } from "firebase/auth";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -16,14 +17,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Auth with browser persistence (works in Expo Go)
+// Initialize Auth with React Native persistence
 const auth = initializeAuth(app, {
-    persistence: browserLocalPersistence
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });
 
 // Initialize and export services
 const db = getFirestore(app);
 const storage = getStorage(app);
+
+// Prevent auto-refresh issues in dev
+if (__DEV__) {
+    // Optional: Log to confirm init
+    console.log("Firebase Auth Initialized with Config");
+}
 
 export { auth, db, storage };
 export default app;
